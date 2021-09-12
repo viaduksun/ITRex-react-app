@@ -1,0 +1,48 @@
+.Header {
+  height: 60px;
+  background: rgb(255, 240, 28);
+}
+.logo {
+  height: 60px;
+  // border: 1px solid #000;
+  img {
+    height: 100%;
+  }
+}
+.title {
+  // border: 1px solid #000;
+  text-align: center;
+  flex: 1 1 auto;
+  line-height: 50px;
+  font-size: 20px;
+}
+.Navbar {
+  display: flex;
+  // border: 1px solid #000;
+  justify-content: center;
+  align-items: center;
+}
+.NavbarItem {
+  position: relative;
+  margin-left: 30px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+  &:after {
+    transition: all 0.3s ease 0s;
+    position: absolute;
+    left: -15px;
+    top: 3px;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #000;
+    transform: scale(0);
+  }
+  &_active {
+    &:after {
+      transform: scale(1);
+    }
+  }
+}

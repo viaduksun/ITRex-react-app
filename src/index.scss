@@ -1,3 +1,5 @@
+@import "./assets/null.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,8 +9,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: rgb(136, 136, 136);
 }
+h1 {
+  font-size: 16px;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.App-wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  // border: 1px solid rgb(113, 25, 255);
+}
+.container {
+  // border: 1px solid rgb(230, 65, 0);
+  width: 100%;
+  max-width: 1080px;
+  margin: 0px auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  flex: 1 1 auto;
+}
+.flex-row {
+  // border: 3px solid rgb(235, 108, 86);
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
 }

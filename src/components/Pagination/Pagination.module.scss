@@ -1,0 +1,37 @@
+.Pagination {
+  // background: rgb(190, 207, 214);
+  // height: 50px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.paginationBtn {
+  background: rgb(195, 195, 195);
+  padding: 5px 20px;
+  cursor: pointer;
+  margin: 0 3px;
+  &_disabled {
+    cursor: default;
+    pointer-events: none;
+    color: rgb(144, 144, 144);    
+  }
+  &:hover {
+    background: rgb(160, 160, 160);
+  }
+}
+.paginationItem {
+  padding: 5px 10px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  border: 1px solid rgb(148, 148, 148);
+  margin: 0 3px;
+  &_active {
+    border: 1px solid rgb(65, 65, 65);
+    background: rgb(77, 77, 77);
+    color: #fff;
+  }
+  &:hover {
+    background: rgb(46, 46, 46);
+    color: #fff;
+  }
+}
