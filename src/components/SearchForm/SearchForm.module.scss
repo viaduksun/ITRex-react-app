@@ -1,3 +1,25 @@
 .SearchForm {
-  background: rgb(164, 201, 204);
+  height: 30px;
+  flex: 1 1 auto;
+  background: rgb(153, 196, 209);
+  border-radius: 3px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+.input {
+  height: 30px;
+  padding: 5px 20px;
+  width: 100%;
+  background: none;
+}
+.searchBtn {
+  width: 35px;
+  background: rgb(153, 196, 209);
+  font-size: 20px;
+  border-left: 1px solid rgb(139, 139, 139);
+  transition: all 0.2s ease 0s;
+  &:hover {
+    background: rgb(125, 174, 189);
+  }
 }

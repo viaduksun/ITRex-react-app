@@ -8,9 +8,11 @@ import { setCurrentPageAction } from "../../store/users/actions";
 const Pagination = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
+  const filteredUsers = useSelector((state) => state.filteredUsers);
   const showBy = useSelector((state) => state.showBy);
   const currentPage = useSelector((state) => state.currentPage);
-  const pagesCount = Math.ceil(users.length / showBy);
+
+  const pagesCount = Math.ceil(filteredUsers.length / showBy);
 
   // const [currPagArr, setCurrPagArr] = useState([]);
 

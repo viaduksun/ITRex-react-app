@@ -1,10 +1,13 @@
 import React, { memo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./UserTable.module.scss";
 import classNames from "classnames";
+import { setCurrentUserAction } from "../../store/users/actions";
 
 const UserTable = () => {
-  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  // const users = useSelector((state) => state.users);
+  const filteredUsers = useSelector((state) => state.filteredUsers);
   const currentPage = useSelector((state) => state.currentPage);
   const showBy = useSelector((state) => state.showBy);
 
@@ -25,10 +28,10 @@ const UserTable = () => {
   const begin = end - showBy;
   let currentChunk = [];
 
-  if (end > users.length - 1) {
-    currentChunk = users.slice(begin);
+  if (end > filteredUsers.length - 1) {
+    currentChunk = filteredUsers.slice(begin);
   } else {
-    currentChunk = users.slice(begin, end);
+    currentChunk = filteredUsers.slice(begin, end);
   }
   // ===SORTING ===
   // function ascendingSort(a, b) {
@@ -93,6 +96,10 @@ const UserTable = () => {
       setInverse(null);
     }
   };
+  const handleRowClick = (item) => {
+    console.log(item);
+    dispatch(setCurrentUserAction(item));
+  };
 
   return (
     <div className={styles.UserTable}>
@@ -115,7 +122,11 @@ const UserTable = () => {
         </thead>
         <tbody>
           {currentChunk.map((item, index) => (
-            <tr className={styles.TableRow} key={item.id + index}>
+            <tr
+              className={styles.TableRow}
+              key={item.id + index}
+              onClick={() => handleRowClick(item)}
+            >
               <td className={styles.TableRowCell}>{item.id}</td>
               <td className={styles.TableRowCell}>{item.firstName}</td>
               <td className={styles.TableRowCell}>{item.lastName}</td>

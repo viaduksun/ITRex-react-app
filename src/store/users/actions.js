@@ -1,5 +1,5 @@
 import getUsers from "../../api/getUsers";
-import { SET_CURRENT_PAGE, SET_SHOW_BY, SET_USERS } from "./types";
+import { REFRESH, SET_CURRENT_PAGE, SET_CURRENT_USER, SET_FILTERED_USERS, SET_SHOW_BY, SET_USERS } from "./types";
 
 export const setUsersAction = () => (dispatch) => {
   getUsers().then((data) => {
@@ -26,4 +26,15 @@ export const setCurrentPageAction = (data) => ({
 export const setShowByAction = (data) => ({
   type: SET_SHOW_BY,
   payload: data
+})
+export const setFilteredUsersAction = (users) => ({
+  type: SET_FILTERED_USERS,
+  payload: users
+})
+export const refreshAction = () => ({
+  type: REFRESH,
+})
+export const setCurrentUserAction = (user) => ({
+  type: SET_CURRENT_USER,
+  payload: user
 })

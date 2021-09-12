@@ -5,6 +5,7 @@ import ShowBy from "../ShowBy/ShowBy";
 import styles from "./ActionsBlock.module.scss";
 
 const ActionsBlock = () => {
+  
   return (
     <div className={styles.ActionsBlock}>
       <SearchForm />
