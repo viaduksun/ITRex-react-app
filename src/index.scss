@@ -22,10 +22,8 @@ code {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  // border: 1px solid rgb(113, 25, 255);
 }
 .container {
-  // border: 1px solid rgb(230, 65, 0);
   width: 100%;
   max-width: 1080px;
   margin: 0px auto;
@@ -36,7 +34,6 @@ code {
   flex: 1 1 auto;
 }
 .flex-row {
-  // border: 3px solid rgb(235, 108, 86);
   display: flex;
   width: 100%;
   flex: 1 1 auto;

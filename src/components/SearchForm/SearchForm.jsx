@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import styles from "./SearchForm.module.scss";
 import { MdSearch } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilteredUsersAction } from "../../store/users/actions";
+import {
+  setCurrentPageAction,
+  setFilteredUsersAction,
+} from "../../store/users/actions";
 
 const SearchForm = () => {
   const users = useSelector((state) => state.users);
@@ -14,7 +17,6 @@ const SearchForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
 
     const searchValue = new RegExp(value.toLocaleLowerCase());
     const filteredUsers = users.filter(
@@ -22,9 +24,9 @@ const SearchForm = () => {
         user.firstName.toLocaleLowerCase().match(searchValue) ||
         user.lastName.toLocaleLowerCase().match(searchValue)
     );
-    console.log(filteredUsers);
     setValue("");
     dispatch(setFilteredUsersAction(filteredUsers));
+    dispatch(setCurrentPageAction(1));
   };
   return (
     <form className={styles.SearchForm} onSubmit={handleSubmit}>

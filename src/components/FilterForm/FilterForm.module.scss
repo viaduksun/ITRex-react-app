@@ -23,6 +23,10 @@
 .arrow {
   font-size: 20px;
   font-weight: bold;
+  transition: all 0.2s ease 0s;
+  &_active {
+    transform: scaleY(-1);
+  }
 }
 .dropdown {
   position: absolute;
@@ -65,11 +69,11 @@
   margin-right: 10px;
 }
 .btnFilter {
-  width: 110px;
+  width: 130px;
   height: 30px;
   background: rgb(78, 120, 144);
   color: #fff;
-  margin: 5px 20px 5px 10px;
+  margin: 5px 10px 5px 10px;
   border-radius: 3px;
   cursor: pointer;
   &:hover {

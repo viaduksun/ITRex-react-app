@@ -18,7 +18,6 @@ const userReducer = (state = initialState, action) => {
     case SET_FILTERED_USERS:
       return { ...state, filteredUsers: action.payload }
     case SET_CURRENT_USER:
-      console.log(action.payload);
       return { ...state, currentUser: action.payload }
     case REFRESH:
       return { ...state, filteredUsers: state.users, showBy: 20 }

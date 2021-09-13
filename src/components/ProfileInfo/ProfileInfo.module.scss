@@ -1,6 +1,6 @@
 .ProfileInfo {
   background: rgb(243, 243, 243);
-  // height: 200px;
+  min-height: 150px;
   // padding: 0 0 20px 0;
   margin-bottom: 20px;
 }
@@ -31,4 +31,10 @@
 .infoText {
   margin-left: 5px;
   flex: 1 1 50%;
+}
+.noUserinfo {
+  text-align: center;
+  font-size: 25px;
+  color: rgb(163, 163, 163);
+  margin-top: 40px;
 }

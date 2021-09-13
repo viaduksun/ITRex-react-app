@@ -7,22 +7,17 @@ import { setCurrentPageAction } from "../../store/users/actions";
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
   const filteredUsers = useSelector((state) => state.filteredUsers);
   const showBy = useSelector((state) => state.showBy);
   const currentPage = useSelector((state) => state.currentPage);
 
   const pagesCount = Math.ceil(filteredUsers.length / showBy);
 
-  // const [currPagArr, setCurrPagArr] = useState([]);
-
   let pagesArr = [];
   let paginationArr = [];
   for (let i = 1; i <= pagesCount; i++) {
     pagesArr.push(i);
   }
-  // console.log(pagesArr);
-
   if (pagesArr.length <= 7) {
     paginationArr = [...pagesArr];
   } else {
@@ -48,7 +43,6 @@ const Pagination = () => {
   }
 
   const handlePagination = (currPage) => {
-    console.log(currPage);
     if (currPage !== "...") {
       dispatch(setCurrentPageAction(currPage));
     }
@@ -63,37 +57,42 @@ const Pagination = () => {
       dispatch(setCurrentPageAction(currentPage - 1));
     }
   };
-  // console.log("paginationArr", paginationArr);
+
   return (
-    <div className={styles.Pagination}>
-      <div
-        className={classNames(styles.paginationBtn, {
-          [styles.paginationBtn_disabled]: currentPage === 1,
-        })}
-        onClick={handlePrev}
-      >
-        prev
-      </div>
-      {paginationArr.map((page, index) => (
-        <div
-          className={classNames(styles.paginationItem, {
-            [styles.paginationItem_active]: currentPage === page,
-          })}
-          key={index}
-          onClick={() => handlePagination(page)}
-        >
-          {page}
+    <>
+      {filteredUsers.length > 0 && (
+        <div className={styles.Pagination}>
+          <div
+            className={classNames(styles.paginationBtn, {
+              [styles.paginationBtn_disabled]: currentPage === 1,
+            })}
+            onClick={handlePrev}
+          >
+            prev
+          </div>
+          {paginationArr.map((page, index) => (
+            <div
+              className={classNames(styles.paginationItem, {
+                [styles.paginationItem_active]: currentPage === page,
+                [styles.paginationItem_dots]: page === "...",
+              })}
+              key={index}
+              onClick={() => handlePagination(page)}
+            >
+              {page}
+            </div>
+          ))}
+          <div
+            className={classNames(styles.paginationBtn, {
+              [styles.paginationBtn_disabled]: currentPage === pagesCount,
+            })}
+            onClick={handleNext}
+          >
+            next
+          </div>
         </div>
-      ))}
-      <div
-        className={classNames(styles.paginationBtn, {
-          [styles.paginationBtn_disabled]: currentPage === pagesCount,
-        })}
-        onClick={handleNext}
-      >
-        next
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

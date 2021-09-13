@@ -15,14 +15,6 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         exact
-        to="/about"
-        className={styles.NavbarItem}
-        activeClassName={styles.NavbarItem_active}
-      >
-        About
-      </NavLink>
-      <NavLink
-        exact
         to="/users"
         className={styles.NavbarItem}
         activeClassName={styles.NavbarItem_active}

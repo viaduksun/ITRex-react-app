@@ -5,14 +5,14 @@ import classNames from "classnames";
 import { setCurrentUserAction } from "../../store/users/actions";
 
 const UserTable = () => {
-  const dispatch = useDispatch();
-  // const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();  
   const filteredUsers = useSelector((state) => state.filteredUsers);
   const currentPage = useSelector((state) => state.currentPage);
   const showBy = useSelector((state) => state.showBy);
 
   const [currentId, setCurrentId] = useState(1);
   const [currentKey, setCurrentKey] = useState("id");
+  const [selectedUser, setSelectedUser] = useState(null);
   const [inverse, setInverse] = useState(false);
 
   const headerItems = [
@@ -33,13 +33,7 @@ const UserTable = () => {
   } else {
     currentChunk = filteredUsers.slice(begin, end);
   }
-  // ===SORTING ===
-  // function ascendingSort(a, b) {
-  //   return a - b;
-  // }
-  // function descendingSort(a, b) {
-  //   return b - a;
-  // }
+
   if (!inverse) {
     currentChunk.sort((a, b) => {
       if (currentKey === "adress") {
@@ -80,13 +74,10 @@ const UserTable = () => {
         return 0;
       }
     });
-  }
-  // console.log(end);
-  // console.log(begin);
-  console.log(currentChunk);
+  } 
 
   const handleHeaderClick = (id, key) => {
-    console.log(key);
+    
     setCurrentId(id);
     setCurrentKey(key);
     if (id === currentId) {
@@ -96,47 +87,55 @@ const UserTable = () => {
       setInverse(null);
     }
   };
-  const handleRowClick = (item) => {
-    console.log(item);
+  const handleRowClick = (item) => {    
+    setSelectedUser(item.id + item.lastName);
     dispatch(setCurrentUserAction(item));
   };
 
   return (
     <div className={styles.UserTable}>
-      <table className={styles.Table}>
-        <thead>
-          <tr className={styles.TableHeader}>
-            {headerItems.map((item, index) => (
-              <th
-                className={classNames(styles.TableHeaderCell, {
-                  [styles.TableHeaderCell_active]: currentId === item.id,
-                  [styles.TableHeaderCell_inverse]: inverse,
-                })}
-                key={item.id}
-                onClick={() => handleHeaderClick(item.id, item.key)}
-              >
-                <p>{item.name}</p>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {currentChunk.map((item, index) => (
-            <tr
-              className={styles.TableRow}
-              key={item.id + index}
-              onClick={() => handleRowClick(item)}
-            >
-              <td className={styles.TableRowCell}>{item.id}</td>
-              <td className={styles.TableRowCell}>{item.firstName}</td>
-              <td className={styles.TableRowCell}>{item.lastName}</td>
-              <td className={styles.TableRowCell}>{item.email}</td>
-              <td className={styles.TableRowCell}>{item.phone}</td>
-              <td className={styles.TableRowCell}>{item.adress.state}</td>
+      {currentChunk.length > 0 ? (
+        <table className={styles.Table}>
+          <thead>
+            <tr className={styles.TableHeader}>
+              {headerItems.map((item, index) => (
+                <th
+                  className={classNames(styles.TableHeaderCell, {
+                    [styles.TableHeaderCell_active]: currentId === item.id,
+                    [styles.TableHeaderCell_inverse]: inverse,
+                  })}
+                  key={item.id}
+                  onClick={() => handleHeaderClick(item.id, item.key)}
+                >
+                  <p>{item.name}</p>
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {currentChunk.map((item, index) => (
+              <tr
+                className={classNames(styles.TableRow, {
+                  [styles.TableRow_selected]:
+                    item.id + item.lastName === selectedUser,
+                })}
+                key={item.id + index}
+                onClick={() => handleRowClick(item)}
+              >
+                <td className={styles.TableRowCell}>{item.id}</td>
+                <td className={styles.TableRowCell}>{item.firstName}</td>
+                <td className={styles.TableRowCell}>{item.lastName}</td>
+                <td className={styles.TableRowCell}>{item.email}</td>
+                <td className={styles.TableRowCell}>{item.phone}</td>
+                <td className={styles.TableRowCell}>{item.adress.state}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <div className={styles.noResultsText}>No results found</div>
+      )}
     </div>
   );
 };

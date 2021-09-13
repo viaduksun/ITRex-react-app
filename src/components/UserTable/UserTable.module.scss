@@ -57,9 +57,19 @@
   &:hover {
     background: rgb(228, 228, 228);
   }
+  &_selected {
+    background: rgb(198, 221, 235);
+  }
 }
 .TableRowCell {
   border-width: 0 1px 1px 0;
   border: 1px solid #000;
   text-align: center;
+}
+.noResultsText {
+  // border: 1px solid #000;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(122, 122, 122);
+  padding: 10px;
 }
