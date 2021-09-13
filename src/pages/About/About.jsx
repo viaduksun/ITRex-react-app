@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./Home.module.scss";
+import styles from "./About.module.scss";
 
-const Home = () => {
+const About = () => {
   return (
-    <div className={styles.Home}>
+    <div className={styles.About}>
       <div className="container">
         <div className={styles.header}>
           <div className={styles.avatar}>
@@ -66,4 +66,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default About;

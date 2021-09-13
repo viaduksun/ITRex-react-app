@@ -15,11 +15,11 @@ const Navbar = () => {
       </NavLink>
       <NavLink
         exact
-        to="/users"
+        to="/about"
         className={styles.NavbarItem}
         activeClassName={styles.NavbarItem_active}
       >
-        Users
+        About
       </NavLink>
     </ul>
   );
