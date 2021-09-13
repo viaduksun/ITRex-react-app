@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setShowByAction } from "../../store/users/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentPageAction,
+  setShowByAction,
+} from "../../store/users/actions";
 import styles from "./ShowBy.module.scss";
 
 const ShowBy = () => {
   const dispatch = useDispatch();
+  const filteredUsers = useSelector((state) => state.filteredUsers);
+  const currentPage = useSelector((state) => state.currentPage);
   const [selected, setSelected] = useState("Show by 20");
   const selectOptions = [
     { id: 1, name: "Show by 20", value: 20, disabled: false },
@@ -20,6 +25,10 @@ const ShowBy = () => {
   const handleSelect = (e) => {
     e.preventDefault();
     dispatch(setShowByAction(e.target.value));
+    // Current page checking
+    if (currentPage > filteredUsers.length / e.target.value) {
+      dispatch(setCurrentPageAction(filteredUsers.length / e.target.value));
+    }
     setSelected(e.target.value);
   };
   return (

@@ -11,7 +11,7 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USERS:
       return { ...state, users: action.payload, filteredUsers: action.payload }
-    case SET_CURRENT_PAGE:
+    case SET_CURRENT_PAGE:      
       return { ...state, currentPage: action.payload }
     case SET_SHOW_BY:
       return { ...state, showBy: action.payload }

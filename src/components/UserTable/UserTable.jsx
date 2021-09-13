@@ -26,10 +26,7 @@ const UserTable = () => {
     { id: 5, key: "phone", name: "Phone" },
     { id: 6, key: "adress", name: "State" },
   ];
-  // Current page checking
-  if (currentPage > filteredUsers.length / showBy) {
-    dispatch(setCurrentPageAction(filteredUsers.length / showBy));
-  }
+  
   const end = currentPage * showBy;
   const begin = end - showBy;
   let currentChunk = [];
