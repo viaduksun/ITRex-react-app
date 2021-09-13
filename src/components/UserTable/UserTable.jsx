@@ -2,10 +2,13 @@ import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./UserTable.module.scss";
 import classNames from "classnames";
-import { setCurrentUserAction } from "../../store/users/actions";
+import {
+  setCurrentPageAction,
+  setCurrentUserAction,
+} from "../../store/users/actions";
 
 const UserTable = () => {
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
   const filteredUsers = useSelector((state) => state.filteredUsers);
   const currentPage = useSelector((state) => state.currentPage);
   const showBy = useSelector((state) => state.showBy);
@@ -23,7 +26,10 @@ const UserTable = () => {
     { id: 5, key: "phone", name: "Phone" },
     { id: 6, key: "adress", name: "State" },
   ];
-
+  // Current page checking
+  if (currentPage > filteredUsers.length / showBy) {
+    dispatch(setCurrentPageAction(filteredUsers.length / showBy));
+  }
   const end = currentPage * showBy;
   const begin = end - showBy;
   let currentChunk = [];
@@ -74,10 +80,9 @@ const UserTable = () => {
         return 0;
       }
     });
-  } 
+  }
 
   const handleHeaderClick = (id, key) => {
-    
     setCurrentId(id);
     setCurrentKey(key);
     if (id === currentId) {
@@ -87,7 +92,7 @@ const UserTable = () => {
       setInverse(null);
     }
   };
-  const handleRowClick = (item) => {    
+  const handleRowClick = (item) => {
     setSelectedUser(item.id + item.lastName);
     dispatch(setCurrentUserAction(item));
   };
